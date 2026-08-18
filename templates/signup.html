@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sign Up — PortfolioAI</title>
+<link rel="stylesheet" href="/static/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="auth-body">
+  <div class="stars"></div>
+  <div class="float-orb1"></div>
+  <div class="float-orb2"></div>
+
+  <div class="auth-wrapper glassmorphism">
+    <div class="auth-left">
+      <div class="logo"><a href="/" style="color:inherit; text-decoration:none;"><i class="fa-solid fa-wand-magic-sparkles"></i> PortfolioAI</a></div>
+      <h2>organize. generate. <span>shine.</span></h2>
+      <p>The AI-powered platform that turns your resume into a stunning portfolio website — in seconds.</p>
+      <ul class="auth-features">
+        <li>Upload resume, get a full portfolio page</li>
+        <li>AI extracts only what's real on your resume</li>
+        <li>Download and share instantly</li>
+      </ul>
+    </div>
+
+    <div class="auth-right">
+      <h1>Create account</h1>
+      <p class="auth-sub">Start turning your resume into a portfolio</p>
+
+      {% if error %}
+        <p class="error" style="color: #ef4444; margin-bottom: 15px; font-size: 0.9rem;">{{ error }}</p>
+      {% endif %}
+
+      <form method="POST" class="auth-form">
+        <label>Full name</label>
+        <input type="text" name="name" placeholder="Your name" required>
+
+        <label>Email address</label>
+        <input type="email" name="email" placeholder="you@example.com" required>
+
+        <label>Password</label>
+        <input type="password" name="password" placeholder="••••••••" required>
+
+        <button type="submit">Create account</button>
+      </form>
+
+      <p class="auth-switch">Already have an account? <a href="/login">Sign in</a></p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{ data.name }} — Elite Portfolio</title>
+<link rel="stylesheet" href="/static/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+    --bg-dark: #070b19;
+    --card-bg: rgba(15, 23, 42, 0.85);
+    --gold-accent: #fbbf24;
+    --gold-glow: rgba(251, 191, 36, 0.25);
+    --border-color: rgba(251, 191, 36, 0.3);
+  }
+
+  body.home-body {
+    background-color: var(--bg-dark);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #f8fafc;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  /* Main Container Style */
+  .portfolio-container {
+    max-width: 1100px;
+    width: 90%;
+    margin: 40px auto;
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    border-radius: 28px;
+    padding: 60px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 40px var(--gold-glow);
+  }
+
+  /* Grid Layout for Sections */
+  .sections-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-top: 30px;
+  }
+
+  .section-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 30px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .section-card.full-width {
+    grid-column: 1 / -1;
+  }
+
+  .section-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(251, 191, 36, 0.5);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px var(--gold-glow);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+    color: var(--gold-accent);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding-bottom: 12px;
+  }
+
+  .skill-badge {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(217, 119, 6, 0.08));
+    border: 1px solid rgba(251, 191, 36, 0.35);
+    color: #fde047;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-block;
+    margin: 5px;
+    transition: all 0.2s ease;
+  }
+
+  .skill-badge:hover {
+    background: rgba(251, 191, 36, 0.25);
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 900px) {
+    .sections-grid {
+      grid-template-columns: 1fr;
+    }
+    .portfolio-container {
+      padding: 30px 20px;
+    }
+  }
+</style>
+</head>
+<body class="home-body" style="overflow-y: auto; height: auto;">
+  <div class="stars"></div>
+  <div class="float-orb1"></div>
+  <div class="float-orb2"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="home-nav" style="position: sticky; top: 0; z-index: 1000; background: rgba(7, 11, 25, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box;">
+    
+    <!-- Logo -->
+    <div class="logo" style="display: flex; align-items: center; gap: 8px; font-weight: 700; color: #fff; font-size: 1.1rem;">
+      <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--gold-accent);"></i> PortfolioAI
+    </div>
+
+    <!-- Right Side Links -->
+    <div style="display: flex; align-items: center; gap: 15px;">
+      <a href="/generator" style="color: #cbd5e1; text-decoration: none; font-size: 0.9rem; padding: 6px 12px; transition: color 0.2s;">Dashboard</a>
+      <a href="/download" class="nav-btn-outline" style="background: rgba(251,191,36,0.1); border: 1px solid var(--gold-accent); color: var(--gold-accent); padding: 6px 14px; border-radius: 8px; text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px;"><i class="fa-solid fa-download"></i> Export HTML</a>
+      <a href="/logout" class="nav-btn-outline" style="border: 1px solid rgba(239, 68, 68, 0.4); color: #fca5a5; padding: 6px 14px; border-radius: 8px; text-decoration: none; font-size: 0.9rem;">Logout</a>
+    </div>
+
+  </nav>
+
+  <!-- Main Portfolio Card -->
+  <div class="portfolio-container">
+    
+    <!-- Hero Header -->
+    <div style="text-align: center; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 40px; margin-bottom: 30px;">
+      <h1 style="font-size: 3.2rem; font-weight: 900; background: linear-gradient(135deg, #fff 30%, var(--gold-accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; letter-spacing: -1px;">
+        {{ data.name }}
+      </h1>
+      <p style="font-size: 1.25rem; color: var(--gold-accent); font-weight: 600; margin-bottom: 25px; letter-spacing: 0.5px;">
+        {{ data.headline }}
+      </p>
+      <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(0,0,0,0.4); padding: 12px 28px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); color: #cbd5e1; font-size: 0.95rem;">
+        <i class="fa-solid fa-envelope-open-text" style="color: var(--gold-accent);"></i> {{ data.contact }}
+      </div>
+    </div>
+
+    <!-- Grid Container for Sections -->
+    <div class="sections-grid">
+
+      <!-- About Me / Summary -->
+      {% if data.summary %}
+      <div class="section-card full-width">
+        <h3 class="section-title"><i class="fa-solid fa-user-astronaut"></i> About Me</h3>
+        <p style="color: #cbd5e1; line-height: 1.8; font-size: 1.1rem; margin: 0;">{{ data.summary }}</p>
+      </div>
+      {% endif %}
+
+      <!-- Skills Section -->
+      {% if data.skills %}
+      <div class="section-card full-width">
+        <h3 class="section-title"><i class="fa-solid fa-code"></i> Technical Arsenal & Skills</h3>
+        <div>
+          {% for skill in data.skills %}
+            <span class="skill-badge">{{ skill }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Experience -->
+      {% if data.experience %}
+      <div class="section-card">
+        <h3 class="section-title"><i class="fa-solid fa-briefcase"></i> Professional Experience</h3>
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+          {% for exp in data.experience %}
+            <div style="background: rgba(0,0,0,0.3); padding: 16px; border-radius: 12px; border-left: 3px solid var(--gold-accent);">
+              <p style="color: #e2e8f0; font-size: 1rem; line-height: 1.6; margin: 0;">{{ exp }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Projects -->
+      {% if data.projects %}
+      <div class="section-card">
+        <h3 class="section-title"><i class="fa-solid fa-laptop-code"></i> Featured Projects</h3>
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+          {% for project in data.projects %}
+            <div style="background: rgba(0,0,0,0.3); padding: 16px; border-radius: 12px; border-left: 3px solid #38bdf8;">
+              <p style="color: #e2e8f0; font-size: 1rem; line-height: 1.6; margin: 0;">{{ project }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Education -->
+      {% if data.education %}
+      <div class="section-card">
+        <h3 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education</h3>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          {% for edu in data.education %}
+            <div style="background: rgba(0,0,0,0.3); padding: 14px 18px; border-radius: 10px;">
+              <p style="color: #cbd5e1; font-size: 0.95rem; margin: 0;">{{ edu }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Achievements -->
+      {% if data.achievements %}
+      <div class="section-card">
+        <h3 class="section-title"><i class="fa-solid fa-award"></i> Achievements & Milestones</h3>
+        <ul style="padding-left: 18px; color: #cbd5e1; font-size: 0.95rem; display: flex; flex-direction: column; gap: 10px; margin: 0;">
+          {% for ach in data.achievements %}
+            <li style="line-height: 1.5;">{{ ach }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+</body>
+</html>

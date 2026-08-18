@@ -1,0 +1,22 @@
+# Environment / secrets
+.env
+
+# Database
+instance/
+users.db
+*.db
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# OS / editor junk
+.DS_Store
+.vscode/
+*.log
