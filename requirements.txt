@@ -1,4 +1,6 @@
-flask
+Flask
 google-generativeai
 python-dotenv
 pypdf
+Werkzeug
+gunicorn
