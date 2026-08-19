@@ -9,7 +9,7 @@ load_dotenv()
 API_KEY = os.getenv("GEMINI_API_KEY")
 
 # Aapke list_models.py ke mutabiq standard flash model use karein
-MODEL_NAME = "gemini-3.7-flash"
+MODEL_NAME = "gemini-3.6-flash"
 
 app = Flask(__name__)
 app.secret_key = "resume-portfolio-secret-key-2026"
